@@ -1,6 +1,12 @@
 server:
   port: 8080
 
+  servlet:
+    session:
+      cookie:
+        same-site: None     # 크로스 도메인 허용
+        secure: true        # https 환경에서만 쿠키 전송 (Render는 https OK)
+
 spring:
   datasource:
     url: jdbc:mysql://yamanote.proxy.rlwy.net:43716/railway
