@@ -19,10 +19,10 @@ public class UserController {
 
     private final JoinService joinService;
 
-    // ✅ 회원가입 - signup.html
+    // 회원가입 - signup.html
     @PostMapping
     public Map<String, Object> register(@RequestBody JoinDTO formDTO) {
-        joinService.register(formDTO);  // ✅ 바뀐 부분
+        joinService.register(formDTO);  // 바뀐 부분
 
         Map<String, Object> res = new HashMap<>();
         res.put("success", true);
@@ -30,7 +30,7 @@ public class UserController {
         return res;
     }
 
-    // ✅ 로그인 - login.html
+    // 로그인 - login.html
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody LoginDTO dto, HttpSession session) {
         JoinEntity user = joinService.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
@@ -48,7 +48,7 @@ public class UserController {
         return res;
     }
 
-    // ✅ 내 정보 확인 - dashboard.html
+    // 내 정보 확인 - dashboard.html
     @GetMapping("/me")
     public Map<String, Object> getCurrentUser(HttpSession session) {
         Map<String, Object> res = new HashMap<>();
@@ -70,7 +70,7 @@ public class UserController {
         return res;
     }
 
-    // ✅ 로그아웃
+    // 로그아웃
     @GetMapping("/logout")
     public Map<String, Object> logout(HttpSession session) {
         session.invalidate();
