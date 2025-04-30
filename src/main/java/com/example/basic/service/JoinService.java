@@ -13,12 +13,21 @@ public class JoinService {
 
     // 회원가입
     public void register(JoinDTO dto) {
+        // 🔒 이메일 중복 방지
+        if (joinRepo.findByEmailAndPassword(dto.getEmail(), dto.getPassword()) != null) {
+            throw new IllegalArgumentException("이미 사용 중인 이메일입니다.");
+        }
+
         JoinEntity user = new JoinEntity();
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.setCreatedAt(java.time.LocalDate.now().toString());
-        joinRepo.save(user);
+
+        JoinEntity saved = joinRepo.save(user);
+
+        // 저장 확인 로그
+        System.out.println("사용자 저장 완료 - ID: " + saved.getId() + ", 이메일: " + saved.getEmail());
     }
 
     // 로그인 검증
