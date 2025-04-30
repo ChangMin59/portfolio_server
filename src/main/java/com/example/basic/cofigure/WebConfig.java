@@ -9,6 +9,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry){
-        registry.addMapping("/api/**").allowedOrigins("https://portfolio-server-3bnc.onrender.com").allowedMethods("GET","POST","PUT","DELETE").allowCredentials(true);
+        registry.addMapping("/api/**").allowedOrigins("https://changmin59.github.io").allowedMethods("GET","POST","PUT","DELETE").allowCredentials(true);
     }
 }
