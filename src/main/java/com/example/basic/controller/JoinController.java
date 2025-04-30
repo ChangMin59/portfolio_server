@@ -8,29 +8,27 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
-public class UserController {
+public class JoinController {
 
     private final JoinService joinService;
 
-    // 회원가입 - signup.html
+    // ✅ 회원가입 (signup.js)
     @PostMapping
     public Map<String, Object> register(@RequestBody JoinDTO formDTO) {
-        joinService.register(formDTO);  // 바뀐 부분
-
-        Map<String, Object> res = new HashMap<>();
-        res.put("success", true);
-        res.put("message", "회원가입 성공");
-        return res;
+        joinService.register(formDTO);
+        return Map.of(
+                "success", true,
+                "message", "회원가입 성공"
+        );
     }
 
-    // 로그인 - login.html
+    // ✅ 로그인 (login.js)
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody LoginDTO dto, HttpSession session) {
         JoinEntity user = joinService.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
@@ -42,15 +40,14 @@ public class UserController {
             res.put("message", "로그인 성공");
         } else {
             res.put("success", false);
-            res.put("message", "이메일 또는 비밀번호가 일치하지 않습니다.");
+            res.put("message", "이메일 또는 비밀번호가 틀렸습니다.");
         }
-
         return res;
     }
 
-    // 내 정보 확인 - dashboard.html
+    // ✅ 로그인된 사용자 정보 (dashboard.js)
     @GetMapping("/me")
-    public Map<String, Object> getCurrentUser(HttpSession session) {
+    public Map<String, Object> getUserInfo(HttpSession session) {
         Map<String, Object> res = new HashMap<>();
         Object loginUser = session.getAttribute("loginUser");
 
@@ -70,13 +67,13 @@ public class UserController {
         return res;
     }
 
-    // 로그아웃
+    // ✅ 로그아웃
     @GetMapping("/logout")
     public Map<String, Object> logout(HttpSession session) {
         session.invalidate();
-        Map<String, Object> res = new HashMap<>();
-        res.put("success", true);
-        res.put("message", "로그아웃 완료");
-        return res;
+        return Map.of(
+                "success", true,
+                "message", "로그아웃 성공"
+        );
     }
 }

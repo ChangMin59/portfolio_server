@@ -17,8 +17,8 @@ public class JoinEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String email;
-    private String password;
-    private String createdAt;
+    private String name;        // 프론트 사용
+    private String email;       // 프론트 사용
+    private String password;    // 회원가입 시 사용
+    private String createdAt;   // 대시보드에서 사용
 }
