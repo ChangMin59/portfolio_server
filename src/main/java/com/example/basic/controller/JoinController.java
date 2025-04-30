@@ -30,18 +30,23 @@ public class JoinController {
 
     // 로그인 (login.js)
     @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody LoginDTO dto, HttpSession session) {
+    public Map<String, Object> login(@RequestBody LoginDTO dto) {
         JoinEntity user = joinService.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 
         Map<String, Object> res = new HashMap<>();
         if (user != null) {
-            session.setAttribute("loginUser", user);
             res.put("success", true);
             res.put("message", "로그인 성공");
+            res.put("user", Map.of(
+                    "name", user.getName(),
+                    "email", user.getEmail(),
+                    "createdAt", user.getCreatedAt()
+            ));
         } else {
             res.put("success", false);
             res.put("message", "이메일 또는 비밀번호가 틀렸습니다.");
         }
+
         return res;
     }
 
