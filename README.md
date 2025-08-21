@@ -152,3 +152,57 @@ Render로 백엔드, Railway MySQL로 DB를 운영하며, 클라이언트는 Git
     ```
     
 ---
+
+## 🏗 아키텍처 개요
+
+- **Frontend (portfolio_client)** 🌐  
+  - GitHub Pages에서 배포되는 정적 웹 애플리케이션  
+  - React/HTML/CSS/JS 기반 자기소개 및 포트폴리오 페이지  
+  - 사용자 입력(회원가입/로그인) → REST API 요청 전송  
+
+- **Backend (portfolio_server)** ⚙️  
+  - Render 서버에서 배포된 Spring Boot 애플리케이션  
+  - 회원가입, 로그인, 대시보드 API 제공  
+  - JPA를 통해 MySQL DB와 연동  
+
+- **Database (Railway MySQL)** 💾  
+  - 클라우드 기반 MySQL DB  
+  - 사용자 정보(이름, 이메일, 가입일, 인증 데이터) 저장  
+  - JPA Entity 매핑을 통해 자동 관리  
+
+- **통신 방식** 🔗  
+  - RESTful API(JSON 기반 요청/응답)  
+  - 인증된 사용자 요청에는 JWT/세션을 사용
+ 
+---
+
+## 📎 배포
+
+- **Frontend (portfolio_client)** 🌐  
+  - GitHub Pages를 통해 정적 웹사이트로 배포  
+  - 브라우저에서 직접 접근 가능  
+
+- **Backend (portfolio_server)** ⚙️  
+  - Render 플랫폼에서 Spring Boot 애플리케이션 배포  
+  - REST API 엔드포인트 제공  
+
+- **Database (Railway MySQL)** 💾  
+  - Railway 클라우드 DB 서비스 사용  
+  - 사용자 계정 및 인증 관련 데이터 저장
+ 
+---
+
+## 🔗 연동 저장소
+
+- **portfolio_client** 🌐  
+  - 프론트엔드 레포지토리  
+  - GitHub Pages로 배포되는 자기소개/포트폴리오 웹 애플리케이션  
+  - 사용자 인터페이스와 API 요청 처리 담당  
+  - [🔗 바로가기](https://github.com/ChangMin59/portfolio_client)
+
+- **portfolio_server** ⚙️  
+  - 백엔드 레포지토리 (현재 프로젝트)  
+  - Spring Boot + JPA 기반 REST API 서버  
+  - 회원가입, 로그인, 사용자 대시보드 API 제공
+ 
+---
