@@ -20,7 +20,12 @@ portfolio_server
 ├─ gradle/wrapper/        # Gradle Wrapper 환경 설정
 ├─ src/                   # 애플리케이션 소스 코드
 │  ├─ main/
-│  │  ├─ java/            # Spring Boot 애플리케이션, Controller, Service, Repository, Entity
+│  │  ├─ java/            # Spring Boot 애플리케이션 패키지
+│  │  │  ├─ controller/   # REST API 컨트롤러 (회원가입, 로그인, 대시보드 등)
+│  │  │  ├─ service/      # 비즈니스 로직 (회원 관리, 인증 처리)
+│  │  │  ├─ repository/   # JPA Repository (DB 접근 계층)
+│  │  │  ├─ entity/       # DB 매핑 엔티티 클래스 (User 등)
+│  │  │  └─ dto/          # 요청/응답 DTO
 │  │  └─ resources/       # 설정 파일(application.yml 등), 정적 리소스
 │  └─ test/               # 단위/통합 테스트 코드
 ├─ Dockerfile             # Docker 이미지 빌드 설정
